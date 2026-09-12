@@ -1,0 +1,19 @@
+name: Deploy Cart Service to Google Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    uses: dipeshsingh2012/shared-workflows/.github/workflows/deploy-cloud-run.yml@main
+    with:
+      service_name: 'cart-service'
+      port: 8003
+      health_check_path: '/api/v1/cart/health'
